@@ -22,7 +22,7 @@ def reorder():
     username = 'Bianca'
     password = '!Str0ngPsword'   
     driver= '{ODBC Driver 17 for SQL Server}'
-    sql_conn=pyodbc.connect('DRIVER='+driver+';                                              SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
+    sql_conn=pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
     pyodbc.drivers()
     cursor = sql_conn.cursor()
 
@@ -40,7 +40,7 @@ def reorder():
       ,[AuthorizerId]
       ,[status]
       ,[comment]
-  FROM [ADProj].[dbo].[Requisition_Table]''';
+  FROM [ADProj].[dbo].[Requisition_Table]'''
     requisition_data = pd.read_sql(req_query, sql_conn)
     requisition_data.to_csv("latest_requisition.csv")
 #     print(requisition_data.shape)
@@ -52,7 +52,7 @@ def reorder():
       ,[reqQty]
       ,[rcvQty]
       ,[status]
-  FROM [ADProj].[dbo].[RequisitionDetail_Table]''';
+  FROM [ADProj].[dbo].[RequisitionDetail_Table]'''
     detail_data = pd.read_sql(req_dt_query, sql_conn)
     detail_data.to_csv("latest_requisition_detail.csv")
     print(detail_data.shape)
@@ -180,7 +180,7 @@ def seeder():
     username = 'Bianca'
     password = '!Str0ngPsword'   
     driver= '{ODBC Driver 17 for SQL Server}' 
-    sql_conn=pyodbc.connect('DRIVER='+driver+';                                                 SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
+    sql_conn=pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
     pyodbc.drivers()
     
     data_new = pd.read_csv('requisitiontesting2.csv', parse_dates = ['dateOfRequest','dateOfAuthorizing'], infer_datetime_format = True,index_col=None)
